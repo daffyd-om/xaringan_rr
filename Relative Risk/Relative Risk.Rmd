@@ -1,0 +1,160 @@
+---
+title: "Hello my name is"
+author: "David Oseguera Montiel"
+#date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    css: ["robot", "hygge",               "middlebury-fonts"]
+params:
+  name1: "Alison" 
+  name2: "Allison"
+---
+
+---
+
+class: center, inverse
+background-image: url("assets/img/dtured.png")
+
+background-size: cover
+---
+
+
+class: center, inverse
+background-image: url("assets/img/rr.png")
+background-size: contain
+
+---
+class: center
+
+# Two by two table 
+
+--
+
+.pull-left[
+Two independent series of observations:
+
+
+(1) whether individuals are exposed or not and 
+
+(2) whether individuals are diseased  or not 
+]
+
+--
+
+.pull-right[
+```{r 2by2, echo=FALSE, message=FALSE, warning=FALSE}
+library(kableExtra); library(tidyverse); library(epiR)
+by2 <- matrix(c("a" , "b" , " a + b",  "c" , "d", "c + d", "a + c", "b + d", "N"), nrow = 3, byrow = TRUE)
+rownames(by2) <- c("exposed", "no exposed", "totals"); 
+colnames(by2) <- c("case", "no case", "totals") 
+by2df <- as.table(by2)
+by2df%>%
+  kbl(caption = "A 2 by 2 contigency matrix/table")%>%
+  #kable_material_dark()
+  kable_material(c("striped", "hover"))
+#pander(by2df, caption = "A 2 by 2 contigency matrix/table")
+```
+]
+
+
+
+---
+class: top, left
+
+# How to make a two by two table
+
+--
+
+.pull-left[
+
+Filling the cells of a two by two table:
+
+in the right way is .blue[key]  
+
+Imagine we received the following information:
+
+
+100 samples
+]
+
+--
+
+.pull-right[
+
+```{r exer, echo=FALSE}
+set.seed(123)
+id <- c(1:100)
+esbl <- sample(c("case", "no_case"), 100, replace = TRUE)
+exposed <- sample(c("TRUE", "FALSE"), 100, replace = TRUE)
+da <- tibble(id, esbl, exposed)
+
+dan <- da %>%
+  kbl(caption = "Data set of Esbl cases and their exposure") %>%
+  kable_paper() %>%
+  scroll_box(width = "500px", height = "500px")
+dan
+
+#kable(da, format = "html")
+```
+]
+
+
+---
+class: top, left
+
+# sort out the data for a two by two table
+
+--
+
+
+.pull-left[
+
+
+```{r excr2, echo=FALSE}
+#dan <- da %>%
+ # kbl() %>%
+  #kable_material(c("striped", "hover"))
+dt <- as_tibble(ftable(esbl ~ exposed, data = da))
+dt <- dt %>%
+  kbl(caption = "Esbl cases summary") %>%
+  #kable(dt, format = "html")
+  kable_paper(bootstrap_options = "striped", full_width = F)
+  #kable_material(c("striped", "hover", full_width = F))
+dt
+```
+]
+
+--
+.pull-right[
+
+
+```{r nwmatrix, echo=FALSE}
+
+by4 <- matrix(c(26,20,31,23), byrow = TRUE, nrow = 2)
+
+rownames(by4) <- c("exposed", "no exposed")
+
+colnames(by4) <- c("case", "no case")
+
+by4df <- as.table(by4)
+
+by4df%>%
+  kbl(caption = "2 x 2 contigency table of esbl cases and their exposure")%>%
+  kable_material(c("striped", "hover"))
+#pander(by4df, caption = "2 x 2 contigency table of esbl cases and their exposure")
+```
+
+]
+
+---
+## Header
+
+???
+* notes
+* notes
+--
+
+* Bullet point 1
+--
+
+* Bullet point 2
