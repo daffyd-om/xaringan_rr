@@ -4,39 +4,271 @@ author: "David Oseguera Montiel"
 #date: "`r Sys.Date()`"
 output:
   xaringan::moon_reader:
-    css: ["robot", "hygge",               "middlebury-fonts"]
-params:
-  name1: "Alison" 
-  name2: "Allison"
----
-
+    seal: false
+    nature:
+      lib_dir: libs                               # Directory to store extra libs
+      #css: ["kunoichi", "ninjutsu" , "assets/ninpo.css"]
+      css: ['default', 'default-fonts', 'hygge']  # Vector of css paths. Order matters!
+      #css: ["robot", "hygge", "middlebury-fonts"]
+      #highlightStyle: github
+      #countIncrementalSlides: false
+      ratio: "18:9"
+      highlightLines: true
+      slideNumberFormat: '%current%'            # Slide numbering
+      highlightStyle: ir-black                  # highlight.js style
+      #highlightLines: true                      # Highlight code lines, ie allow #<<
+      countIncrementalSlides: false
 ---
 
 class: center, inverse
-background-image: url("assets/img/dtured.png")
+background-image: url("img/dtured.png")
 
 background-size: cover
+
 ---
-
-
 class: center, inverse
-background-image: url("assets/img/rr.png")
+background-image: url("img/rr.png")
 background-size: contain
 
----
-class: center
+???
+* In epidemiology, we are concerned with the degree to which a particular exposure might cause (or prevent) a particular disease. ls for example, eating in kanteens associated to amr gene expression in our microbiota?
 
-# Two by two table 
+*let me stress the word association because claim causal effects is not that easy from a single epidemiologic study; thus, we say instead that exposures and diseases are (or are not) associated. 
+
+* The degree of association between exposures and health outcomes can be estimated through measures of association. this is the case of Risk ratio. This chapter will therefore provide a concise explanation of Risk ratio, which is also known as a relative risk and cumulative incidence ratio 
+
+---
+class: Left, bottom, inverse
+
+# Learning objectives 	&#9786;
+
+???
+* After going through this video and solving a quizz and a small exercise you should be able to 
+
+
+--
+
+
+- Execute the estimation of the Relative Risk
+
+
+--
+
+
+- Tell when you can use risk ratio for your analysis
+
+
+--
+
+
+- Explain the meaning of a risk ratio estimation
+
+
+--
+
+
+# Plan &#9749;
+
+--
+
+- Study design to calculate the risk ratio
+
+
+--
+
+
+- Recall a 2 by 2 table
+
+
+--
+
+
+- We will see how to calculate the risk ratio
+
+
+--
+
+- Recap, notes and more
+
+
+--
+
+# the journey starts now &#9973;
+
+---
+class: middle, center,inverse
+background-image: url("img/flamencos_3.JPG")
+background-size: cover
+
+
+???
+*so let me start by saying that RR is a measure used in cohort studies. 
+
+*what is a cohort defined most broadly as “any designated group of individuals who are followed over a period of time.” IN SIMPLE TERMS WE WILL REFER TO two cohorts, exposed and unexposed,
+
+*A cohort study,
+involves measuring the occurrence of disease within one or more cohorts.
+
+
+* LET'S SEE NOW A COHORT DESIGN 
+
+--
+
+
+# Cohort studies
+
+
+
+---
+class:top, center
+
+## .left[Sampling]
+
+
+
+???
+* we rarely conduct studies on entire populations because they are too big for it to be logistically feasible to study everyone in the population. Therefore we draw a sample and perform the study with the individuals in the sample. For a cohort study, since we will be calculating incidence, we must start with individuals who are at risk of the outcome.
+
+
+--
+
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+library(DiagrammeR)
+DiagrammeR::grViz("digraph {
+  graph [layout = dot, rankdir = TB]
+  
+  node [shape = rectangle]        
+  rec1 [label = 'Target population']
+  rec2 [label = 'Sample']
+  #rec3 [label = 'Measure exposure']
+  #rec4 [label =  'E +']
+  #rec5 [label = 'E -']
+  
+  # edge definitions with the node IDs
+  rec1 -> rec2 
+  #rec2 -> rec3
+  #rec3 -> rec4
+  #rec3 -> rec5
+  }", 
+  height = 150)
+```
+
+
+
+--
+
+
+## .left[Measuring exposure and forming cohorts]
+
+
+--
+
+
+
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+library(DiagrammeR)
+DiagrammeR::grViz("digraph {
+  graph [layout = dot, rankdir = TB]
+  
+  node [shape = rectangle]        
+  #rec1 [label = 'Target population']
+  rec2 [label = 'Sample']
+  rec3 [label = 'Measure exposure']
+  rec4 [label =  'E +']
+  rec5 [label = 'E -']
+  
+  # edge definitions with the node IDs
+  #rec1 -> rec2 
+  rec2 -> rec3
+  rec3 -> rec4
+  rec3 -> rec5
+  }", 
+  height = 250)
+```
+
+
+---
+class: top, center
+
+
+## .left[Measure disease]
+
+???
+*We then follow the participants in our study for some length of time and observe incident cases as they arise. 
+* at the beginning of a cohort study, everyone is still at risk of developing the disease, and therefore there are no individuals in the D+ column
+
+--
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+library(DiagrammeR)
+DiagrammeR::grViz("digraph {
+  graph [layout = dot, rankdir = TB]
+  
+  node [shape = rectangle]        
+  #rec1 [label = 'Target population']
+  rec2 [label = 'Sample']
+  rec3 [label = 'Measure exposure']
+  rec4 [label =  'E +']
+  rec5 [label = 'E -']
+  rec6 [label = 'Follow for some time']
+  rec7 [label = 'D +']
+  rec8 [label = 'D -']
+  
+  # edge definitions with the node IDs
+  #rec1 -> rec2 
+  rec2 -> rec3
+  rec3 -> rec4
+  rec3 -> rec5
+  rec4 -> rec6
+  rec5 -> rec6
+  rec6 -> rec7
+  rec6 -> rec8
+  }", 
+  height = 500)
+```
+
+
+---
+class: center, bottom, inverse
+background-image: url("img/viejita2.JPG")
+???
+* oNCE THE COHORT sTUDY HAS BEEN CONDUCTED WE will get some data which needs to be arrange in 2 by 2 table
+
+--
+
+
+# two-by-two table
+
+
+---
+class: center, middle
+
+# Two by two table &#9775;
+
+???
+* I like to see a 2by2 table as a dualism data summary
+* Before getting into RR, it is important to understand the notation used in epidemiology to convey exposure and disease data: the 
+**2 x 2 table is a compact summary of data for 2 variables from a study—namely, the exposure and the health outcome
+*a are diseased +  and exposed +
+*b are number of no cases (no diseased) exposed,
+*c are number of cases (disease) no exposed,
+*d are number of no cases (no diseased) no exposed
+
 
 --
 
 .pull-left[
-Two independent series of observations:
+Two series of observations:
 
 
-(1) whether individuals are exposed or not and 
+&#9755; exposed or not 
 
-(2) whether individuals are diseased  or not 
+
+
+
+&#9755; diseased  or not 
 ]
 
 --
@@ -44,54 +276,94 @@ Two independent series of observations:
 .pull-right[
 ```{r 2by2, echo=FALSE, message=FALSE, warning=FALSE}
 library(kableExtra); library(tidyverse); library(epiR)
-by2 <- matrix(c("a" , "b" , " a + b",  "c" , "d", "c + d", "a + c", "b + d", "N"), nrow = 3, byrow = TRUE)
-rownames(by2) <- c("exposed", "no exposed", "totals"); 
-colnames(by2) <- c("case", "no case", "totals") 
+by2 <- matrix(c("a" , "b" , "c" , "d"), nrow = 2, byrow = TRUE)
+rownames(by2) <- c("exposed +", "exposed -"); 
+colnames(by2) <- c("diseased +", "diseased -") 
 by2df <- as.table(by2)
-by2df%>%
-  kbl(caption = "A 2 by 2 contigency matrix/table")%>%
-  #kable_material_dark()
-  kable_material(c("striped", "hover"))
+by2df %>%
+  kbl(caption = "2 by 2 table") %>%
+  kable_styling(full_width = F, position = "right")
+  #kable_material(c("striped", "hover"))
 #pander(by2df, caption = "A 2 by 2 contigency matrix/table")
 ```
+
 ]
 
 
 
 ---
-class: top, left
+class: center, middle
 
-# How to make a two by two table
+# 2 by 2 table with margins
+
+???
+*The margin totals are sometimes helpful when calculating various measures of association (and to check yourself against the original data).
+
+--
+
+```{r 2by2f, echo=FALSE, message=FALSE, warning=FALSE}
+library(kableExtra); library(tidyverse); library(epiR)
+by2 <- matrix(c("a" , "b" , " a + b",  "c" , "d", "c + d", "a + c", "b + d", "N"), nrow = 3, byrow = TRUE)
+rownames(by2) <- c("exposed +", "exposed -", "totals"); 
+colnames(by2) <- c("diseased +", "diseased -", "totals") 
+by2df <- as.table(by2)
+by2df %>%
+  kbl() %>%
+  kable_styling()
+  #kable_material(c("striped", "hover"))
+#pander(by2df, caption = "A 2 by 2 contigency matrix/table")
+```
+
+---
+class: top, center
+
+# Example: raw data
+
+???
+* Filling the cells of a two by two table:
+*in the right way is key  
+*Imagine we received the following information:
+
+
+
 
 --
 
 .pull-left[
+```{r exer, echo=FALSE}
+set.seed(123)
+id <- c(1:10)
+esbl <- sample(c("+", "-"), 10, replace = TRUE)
+exposed <- sample(c("+", "-"), 10, replace = TRUE)
+da <- tibble(id, esbl, exposed)
 
-Filling the cells of a two by two table:
+dan <- da %>%
+  kbl() %>%
+  kable_styling()
+  #kable_paper()# %>%
+  #scroll_box(width = "500px", height = "500px")
+dan
 
-in the right way is .blue[key]  
-
-Imagine we received the following information:
-
-
-100 samples
+#kable(da, format = "html")
+```
 ]
 
 --
 
 .pull-right[
 
-```{r exer, echo=FALSE}
+```{r exer2, echo=FALSE}
 set.seed(123)
-id <- c(1:100)
-esbl <- sample(c("case", "no_case"), 100, replace = TRUE)
-exposed <- sample(c("TRUE", "FALSE"), 100, replace = TRUE)
+id <- c(1:10)
+esbl <- sample(c("yes", "no"), 10, replace = TRUE)
+exposed <- sample(c("1", "0"), 10, replace = TRUE)
 da <- tibble(id, esbl, exposed)
 
 dan <- da %>%
-  kbl(caption = "Data set of Esbl cases and their exposure") %>%
-  kable_paper() %>%
-  scroll_box(width = "500px", height = "500px")
+  kbl() %>%
+  kable_styling()
+  #kable_paper()# %>%
+  #scroll_box(width = "500px", height = "500px")
 dan
 
 #kable(da, format = "html")
@@ -100,16 +372,21 @@ dan
 
 
 ---
-class: top, left
+class: top, center
 
-# sort out the data for a two by two table
+# Summarizing raw data &#9874;
+
+???
+* Filling the cells of a two by two table:
+*in the right way is key  
+*Imagine we received the following information:
+
+
+
 
 --
 
-
 .pull-left[
-
-
 ```{r excr2, echo=FALSE}
 #dan <- da %>%
  # kbl() %>%
@@ -118,43 +395,304 @@ dt <- as_tibble(ftable(esbl ~ exposed, data = da))
 dt <- dt %>%
   kbl(caption = "Esbl cases summary") %>%
   #kable(dt, format = "html")
-  kable_paper(bootstrap_options = "striped", full_width = F)
+  kable_styling()
   #kable_material(c("striped", "hover", full_width = F))
 dt
 ```
 ]
 
 --
+
 .pull-right[
 
 
 ```{r nwmatrix, echo=FALSE}
 
-by4 <- matrix(c(26,20,31,23), byrow = TRUE, nrow = 2)
+by4 <- matrix(c(2,3,4,1), byrow = TRUE, nrow = 2)
 
-rownames(by4) <- c("exposed", "no exposed")
+rownames(by4) <- c("exposed 1", "exposed 0")
 
-colnames(by4) <- c("case", "no case")
+colnames(by4) <- c("esbl yes", "esbl no")
 
 by4df <- as.table(by4)
 
 by4df%>%
-  kbl(caption = "2 x 2 contigency table of esbl cases and their exposure")%>%
-  kable_material(c("striped", "hover"))
+  kbl(caption = "2 x 2 table of esbl cases and their exposure")%>%
+  kable_styling()
 #pander(by4df, caption = "2 x 2 contigency table of esbl cases and their exposure")
 ```
 
+
+
+]
+
+
+---
+class: center, bottom, inverse
+background-image: url("img/montpellier.JPG")
+background-size: cover
+???
+*Let me show you now in the blackboard and example of RR
+
+--
+
+
+# We are ready for RR
+
+
+
+---
+class: right, top
+background-image: url("img/venados.JPG")
+background-size: cover
+???
+*let us now see recap
+
+--
+
+# Recap and some extra notes
+
+---
+class: center, top
+
+### two-by-two table &#9775;
+
+--
+
+```{r 2by222, echo=FALSE, message=FALSE, warning=FALSE}
+library(kableExtra); library(tidyverse); library(epiR)
+by2 <- matrix(c("a" , "b" , "c" , "d"), nrow = 2, byrow = TRUE)
+rownames(by2) <- c("E +", "E -"); 
+colnames(by2) <- c("D +", "D -") 
+by2df <- as.table(by2)
+by2df %>%
+  kbl(caption = "2 by 2 table") %>%
+  kable_styling(full_width = F)
+  #kable_material(c("striped", "hover"))
+#pander(by2df, caption = "A 2 by 2 contigency matrix/table")
+```
+
+--
+
+### Risk ratio
+
+--
+
+$$RR =\frac{a}{a+ b}/\frac{c}{c+d}$$
+
+
+--
+
+
+
+### Interpretation
+
+
+--
+
+.left[RR > 1 Exposure associated with higher risk of outcome]
+
+.left[RR < 1 Exposure associated with lower risk of outcome]
+
+.left[RR = 1 Risk is comparable in both cohorts]
+
+
+---
+class:top, left
+???
+*another point estimate well known an highly used in epi studies is the OR
+*it is so common reported, because it is the estimate from logistic regression analysis
+
+
+--
+
+
+## Risk ratio friend:
+
+--
+
+### Odds ratio 
+
+
+--
+
+
+
+$$OR=\frac{\frac{a}{b}}{\frac{c}{d}}$$
+
+
+
+
+--
+
+
+
+
+$$OR=\frac{a \times d}{b \times c}$$
+
+
+
+--
+
+
+###Example:
+
+--
+
+
+.pull-left[
+```{r 2by2222, echo=FALSE, message=FALSE, warning=FALSE}
+library(kableExtra); library(tidyverse); library(epiR)
+by2 <- matrix(c("90" , "60" , "30" , "120"), nrow = 2, byrow = TRUE)
+rownames(by2) <- c("E +", "E -"); 
+colnames(by2) <- c("D +", "D -") 
+by2df <- as.table(by2)
+by2df %>%
+  kbl(caption = "2 by 2 table") %>%
+  kable_styling(full_width = F)
+  #kable_material(c("striped", "hover"))
+#pander(by2df, caption = "A 2 by 2 contigency matrix/table")
+```
+]
+
+.pull-right[
+
+```{r, or, highlight.output = 1}
+OR = (90 / 60) / (30 / 120)
+OR
+```
 ]
 
 ---
-## Header
+class: bottom,left
 
 ???
-* notes
-* notes
+*the OR is larger than RR; this an overestimation of the exposure as a risk. if the rr is smaller than 1 the or will underestimate the exposure as a preventive factor. Only when the prevalence or incidence is small the RR and OR will tend to be equal. you will see that OR is so common reported in epi studiesand  it is because it is the estimate from logistic regression analysis. 
+*Nevertheless for cohort studies RR should be given preference over OR
+
 --
 
-* Bullet point 1
+
+## Intrepeting OR and RR
+
 --
 
-* Bullet point 2
+
+```{r, or2, highlight.output = TRUE}
+(OR2 = (90 * 120) / (30 * 60))
+```
+
+--
+
+
+
+```{r, rr45, highlight.output = TRUE}
+(RR = ((90) / (90 + 60)) / ((30) / (30 + 120)))
+```
+
+--
+
+
+
+&#9758; OR = 6; the odds of disease in exposed individuals is six times higher than in the unexposed
+
+
+--
+
+&#9755; RR = 3; The incidence of disease in exposed is three times higher than in the unexposed
+
+
+---
+class: center, top
+
+# Speeding RR and OR estimation with R &clubs;
+
+--
+
+
+
+
+```{r matrix1, echo=TRUE, message=FALSE}
+m <- matrix(c(90, 60, 30, 120), nrow = 2, byrow = TRUE)
+m <- as.table(m)
+m
+```
+
+
+
+```{r matrix2, echo=FALSE}
+library(epiR)
+```
+
+--
+
+
+```{r matrix3, echo=TRUE, eval=FALSE}
+install.packages("epiR")
+library(epiR)
+```
+
+
+
+--
+
+
+```{r matrix34, echo=TRUE, eval=FALSE}
+epi.2by2(m, method = "cohort.count")
+```
+
+
+---
+class: top, left
+
+
+
+```{r matrix4, echo=TRUE, highlight.output = c(1, 8,9)}
+epi.2by2(m, method = "cohort.count")
+```
+
+---
+class: inverse, center, middle
+
+# We learned
+
+
+--
+
+ cohort studies
+
+--
+
+ recall a two-by-table
+ 
+--
+ 
+ risk ratio
+
+--
+
+ interpret risk ratio and odds ratio
+
+--
+
+ saw how to get this RR and OR with `R`
+ 
+---
+class:
+
+background-image: url("img/horse.JPG")
+background-size: contain
+
+
+.right[
+> 
+
+> 
+         
+> "tell me, I forget
+
+> show me, I remember
+
+> involve me, I understand"
+
+>`r tufte::quote_footer('--- Chinesse proverb')`]

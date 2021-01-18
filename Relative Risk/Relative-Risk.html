@@ -5,73 +5,267 @@
     <meta charset="utf-8" />
     <meta name="author" content="David Oseguera Montiel" />
     <script src="Relative-Risk_files/header-attrs-2.6/header-attrs.js"></script>
-    <link href="Relative-Risk_files/remark-css-0.0.1/robot.css" rel="stylesheet" />
-    <link href="Relative-Risk_files/remark-css-0.0.1/hygge.css" rel="stylesheet" />
-    <link href="Relative-Risk_files/remark-css-0.0.1/middlebury-fonts.css" rel="stylesheet" />
+    <link href="Relative-Risk_files/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="Relative-Risk_files/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+    <script src="Relative-Risk_files/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+    <script src="Relative-Risk_files/viz-1.8.2/viz.js"></script>
+    <link href="Relative-Risk_files/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+    <script src="Relative-Risk_files/grViz-binding-1.0.6.1/grViz.js"></script>
     <script src="Relative-Risk_files/kePrint-0.0.1/kePrint.js"></script>
     <link href="Relative-Risk_files/lightable-0.0.1/lightable.css" rel="stylesheet" />
   </head>
   <body>
     <textarea id="source">
-class: center, middle, inverse, title-slide
 
-# Hello my name is
-### David Oseguera Montiel
-
----
-
-
----
 
 class: center, inverse
-background-image: url("assets/img/dtured.png")
+background-image: url("img/dtured.png")
 
 background-size: cover
+
 ---
-
-
 class: center, inverse
-background-image: url("assets/img/rr.png")
+background-image: url("img/rr.png")
 background-size: contain
 
----
-class: center
+???
+* In epidemiology, we are concerned with the degree to which a particular exposure might cause (or prevent) a particular disease. ls for example, eating in kanteens associated to amr gene expression in our microbiota?
 
-# Two by two table 
+*let me stress the word association because claim causal effects is not that easy from a single epidemiologic study; thus, we say instead that exposures and diseases are (or are not) associated. 
+
+* The degree of association between exposures and health outcomes can be estimated through measures of association. this is the case of Risk ratio. This chapter will therefore provide a concise explanation of Risk ratio, which is also known as a relative risk and cumulative incidence ratio 
+
+---
+class: Left, bottom, inverse
+
+# Learning objectives 	&amp;#9786;
+
+???
+* After going through this video and solving a quizz and a small exercise you should be able to 
+
+
+--
+
+
+- Execute the estimation of the Relative Risk
+
+
+--
+
+
+- Tell when you can use risk ratio for your analysis
+
+
+--
+
+
+- Explain the meaning of a risk ratio estimation
+
+
+--
+
+
+# Plan &amp;#9749;
+
+--
+
+- Study design to calculate the risk ratio
+
+
+--
+
+
+- Recall a 2 by 2 table
+
+
+--
+
+
+- We will see how to calculate the risk ratio
+
+
+--
+
+- Recap, notes and more
+
+
+--
+
+# the journey starts now &amp;#9973;
+
+---
+class: middle, center,inverse
+background-image: url("img/flamencos_3.JPG")
+background-size: cover
+
+
+???
+*so let me start by saying that RR is a measure used in cohort studies. 
+
+*what is a cohort defined most broadly as “any designated group of individuals who are followed over a period of time.” IN SIMPLE TERMS WE WILL REFER TO two cohorts, exposed and unexposed,
+
+*A cohort study,
+involves measuring the occurrence of disease within one or more cohorts.
+
+
+* LET'S SEE NOW A COHORT DESIGN 
+
+--
+
+
+# Cohort studies
+
+
+
+---
+class:top, center
+
+## .left[Sampling]
+
+
+
+???
+* we rarely conduct studies on entire populations because they are too big for it to be logistically feasible to study everyone in the population. Therefore we draw a sample and perform the study with the individuals in the sample. For a cohort study, since we will be calculating incidence, we must start with individuals who are at risk of the outcome.
+
+
+--
+
+
+<div id="htmlwidget-46b376e1591974c52dd9" style="width:504px;height:150px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-46b376e1591974c52dd9">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle]        \n  rec1 [label = \"Target population\"]\n  rec2 [label = \"Sample\"]\n  #rec3 [label = \"Measure exposure\"]\n  #rec4 [label =  \"E +\"]\n  #rec5 [label = \"E -\"]\n  \n  # edge definitions with the node IDs\n  rec1 -> rec2 \n  #rec2 -> rec3\n  #rec3 -> rec4\n  #rec3 -> rec5\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+
+
+--
+
+
+## .left[Measuring exposure and forming cohorts]
+
+
+--
+
+
+
+
+<div id="htmlwidget-8423635cdb3750328246" style="width:504px;height:250px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8423635cdb3750328246">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle]        \n  #rec1 [label = \"Target population\"]\n  rec2 [label = \"Sample\"]\n  rec3 [label = \"Measure exposure\"]\n  rec4 [label =  \"E +\"]\n  rec5 [label = \"E -\"]\n  \n  # edge definitions with the node IDs\n  #rec1 -> rec2 \n  rec2 -> rec3\n  rec3 -> rec4\n  rec3 -> rec5\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+
+---
+class: top, center
+
+
+## .left[Measure disease]
+
+???
+*We then follow the participants in our study for some length of time and observe incident cases as they arise. 
+* at the beginning of a cohort study, everyone is still at risk of developing the disease, and therefore there are no individuals in the D+ column
+
+--
+
+<div id="htmlwidget-ac61059e3d1f9f45a26a" style="width:504px;height:500px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ac61059e3d1f9f45a26a">{"x":{"diagram":"digraph {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle]        \n  #rec1 [label = \"Target population\"]\n  rec2 [label = \"Sample\"]\n  rec3 [label = \"Measure exposure\"]\n  rec4 [label =  \"E +\"]\n  rec5 [label = \"E -\"]\n  rec6 [label = \"Follow for some time\"]\n  rec7 [label = \"D +\"]\n  rec8 [label = \"D -\"]\n  \n  # edge definitions with the node IDs\n  #rec1 -> rec2 \n  rec2 -> rec3\n  rec3 -> rec4\n  rec3 -> rec5\n  rec4 -> rec6\n  rec5 -> rec6\n  rec6 -> rec7\n  rec6 -> rec8\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+
+---
+class: center, bottom, inverse
+background-image: url("img/viejita2.JPG")
+???
+* oNCE THE COHORT sTUDY HAS BEEN CONDUCTED WE will get some data which needs to be arrange in 2 by 2 table
+
+--
+
+
+# two-by-two table
+
+
+---
+class: center, middle
+
+# Two by two table &amp;#9775;
+
+???
+* I like to see a 2by2 table as a dualism data summary
+* Before getting into RR, it is important to understand the notation used in epidemiology to convey exposure and disease data: the 
+**2 x 2 table is a compact summary of data for 2 variables from a study—namely, the exposure and the health outcome
+*a are diseased +  and exposed +
+*b are number of no cases (no diseased) exposed,
+*c are number of cases (disease) no exposed,
+*d are number of no cases (no diseased) no exposed
+
 
 --
 
 .pull-left[
-Two independent series of observations:
+Two series of observations:
 
 
-(1) whether individuals are exposed or not and 
+&amp;#9755; exposed or not 
 
-(2) whether individuals are diseased  or not 
+
+
+
+&amp;#9755; diseased  or not 
 ]
 
 --
 
 .pull-right[
-&lt;table class=" lightable-material lightable-striped lightable-hover" style='font-family: "Source Sans Pro", helvetica, sans-serif; margin-left: auto; margin-right: auto;'&gt;
-&lt;caption&gt;A 2 by 2 contigency matrix/table&lt;/caption&gt;
+&lt;table class="table" style="width: auto !important; margin-right: 0; margin-left: auto"&gt;
+&lt;caption&gt;2 by 2 table&lt;/caption&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; case &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; no case &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; diseased + &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; diseased - &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; exposed + &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; a &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; b &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; exposed - &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; c &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; d &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+]
+
+
+
+---
+class: center, middle
+
+# 2 by 2 table with margins
+
+???
+*The margin totals are sometimes helpful when calculating various measures of association (and to check yourself against the original data).
+
+--
+
+&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; diseased + &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; diseased - &lt;/th&gt;
    &lt;th style="text-align:left;"&gt; totals &lt;/th&gt;
   &lt;/tr&gt;
  &lt;/thead&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; exposed &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; exposed + &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; a &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; b &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; a + b &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; no exposed &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; exposed - &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; c &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; d &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; c + d &lt;/td&gt;
@@ -84,560 +278,171 @@ Two independent series of observations:
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-]
-
-
 
 ---
-class: top, left
+class: top, center
 
-# How to make a two by two table
+# Example: raw data
+
+???
+* Filling the cells of a two by two table:
+*in the right way is key  
+*Imagine we received the following information:
+
+
+
 
 --
 
 .pull-left[
-
-Filling the cells of a two by two table:
-
-in the right way is .blue[key]  
-
-Imagine we received the following information:
-
-
-100 samples
+&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; id &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; esbl &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; exposed &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; + &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; - &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; + &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; - &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; + &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; - &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; + &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; + &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; - &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; + &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; - &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; + &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; + &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; + &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; + &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; + &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 ]
 
 --
 
 .pull-right[
 
-&lt;div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; overflow-x: scroll; width:500px; "&gt;&lt;table class=" lightable-paper" style='font-family: "Arial Narrow", arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;'&gt;
-&lt;caption&gt;Data set of Esbl cases and their exposure&lt;/caption&gt;
+&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
   &lt;tr&gt;
-   &lt;th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"&gt; id &lt;/th&gt;
-   &lt;th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"&gt; esbl &lt;/th&gt;
-   &lt;th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"&gt; exposed &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; id &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; esbl &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; exposed &lt;/th&gt;
   &lt;/tr&gt;
  &lt;/thead&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; yes &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; yes &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; yes &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no_case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; no &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; yes &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no_case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; no &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no_case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; no &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no_case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; no &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; yes &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 11 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no_case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 12 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no_case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 13 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no_case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 14 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 15 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no_case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 16 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 17 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no_case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 18 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 19 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 20 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 21 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 22 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no_case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 23 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 24 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 25 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 26 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 27 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no_case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 28 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no_case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 29 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 30 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no_case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 31 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 32 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no_case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 33 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 34 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no_case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 35 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no_case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 36 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 37 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 38 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 39 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 40 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no_case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 41 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 42 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no_case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 43 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no_case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 44 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 45 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 46 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 47 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 48 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no_case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 49 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 50 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 51 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no_case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 52 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 53 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 54 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 55 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 56 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no_case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 57 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no_case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 58 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 59 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no_case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 60 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 61 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 62 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no_case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 63 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no_case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 64 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 65 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 66 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no_case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 67 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 68 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 69 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 70 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 71 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no_case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 72 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 73 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 74 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 75 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 76 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no_case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 77 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no_case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 78 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 79 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no_case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 80 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no_case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 81 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no_case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 82 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no_case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 83 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 84 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no_case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 85 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no_case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 86 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no_case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 87 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 88 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 89 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no_case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 90 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 91 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no_case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 92 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no_case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 93 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 94 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no_case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 95 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no_case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 96 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 97 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 98 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no_case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 99 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 100 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; yes &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
-&lt;/table&gt;&lt;/div&gt;
+&lt;/table&gt;
 ]
 
 
 ---
-class: top, left
+class: top, center
 
-# sort out the data for a two by two table
+# Summarizing raw data &amp;#9874;
+
+???
+* Filling the cells of a two by two table:
+*in the right way is key  
+*Imagine we received the following information:
+
+
+
 
 --
 
-
 .pull-left[
-
-
-&lt;table class=" lightable-paper" style='font-family: "Arial Narrow", arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'&gt;
+&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
 &lt;caption&gt;Esbl cases summary&lt;/caption&gt;
  &lt;thead&gt;
   &lt;tr&gt;
@@ -648,74 +453,407 @@ class: top, left
  &lt;/thead&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 31 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; no &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; case &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 26 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; no &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; FALSE &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no_case &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 23 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; yes &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; TRUE &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; no_case &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 20 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; yes &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 ]
 
 --
+
 .pull-right[
 
 
-&lt;table class=" lightable-material lightable-striped lightable-hover" style='font-family: "Source Sans Pro", helvetica, sans-serif; margin-left: auto; margin-right: auto;'&gt;
-&lt;caption&gt;2 x 2 contigency table of esbl cases and their exposure&lt;/caption&gt;
+&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+&lt;caption&gt;2 x 2 table of esbl cases and their exposure&lt;/caption&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; case &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; no case &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; esbl yes &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; esbl no &lt;/th&gt;
   &lt;/tr&gt;
  &lt;/thead&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; exposed &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 26 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 20 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; exposed 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; no exposed &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 31 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 23 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; exposed 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 
+
+
+]
+
+
+---
+class: center, bottom, inverse
+background-image: url("img/montpellier.JPG")
+background-size: cover
+???
+*Let me show you now in the blackboard and example of RR
+
+--
+
+
+# We are ready for RR
+
+
+
+---
+class: right, top
+background-image: url("img/venados.JPG")
+background-size: cover
+???
+*let us now see recap
+
+--
+
+# Recap and some extra notes
+
+---
+class: center, top
+
+### two-by-two table &amp;#9775;
+
+--
+
+&lt;table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;"&gt;
+&lt;caption&gt;2 by 2 table&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; D + &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; D - &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; E + &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; a &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; b &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; E - &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; c &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; d &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+--
+
+### Risk ratio
+
+--
+
+`$$RR =\frac{a}{a+ b}/\frac{c}{c+d}$$`
+
+
+--
+
+
+
+### Interpretation
+
+
+--
+
+.left[RR &gt; 1 Exposure associated with higher risk of outcome]
+
+.left[RR &lt; 1 Exposure associated with lower risk of outcome]
+
+.left[RR = 1 Risk is comparable in both cohorts]
+
+
+---
+class:top, left
+???
+*another point estimate well known an highly used in epi studies is the OR
+*it is so common reported, because it is the estimate from logistic regression analysis
+
+
+--
+
+
+## Risk ratio friend:
+
+--
+
+### Odds ratio 
+
+
+--
+
+
+
+`$$OR=\frac{\frac{a}{b}}{\frac{c}{d}}$$`
+
+
+
+
+--
+
+
+
+
+`$$OR=\frac{a \times d}{b \times c}$$`
+
+
+
+--
+
+
+###Example:
+
+--
+
+
+.pull-left[
+&lt;table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;"&gt;
+&lt;caption&gt;2 by 2 table&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; D + &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; D - &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; E + &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 90 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 60 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; E - &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 30 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 120 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+.pull-right[
+
+
+```r
+OR = (90 / 60) / (30 / 120)
+OR
+```
+
+```
+*## [1] 6
+```
 ]
 
 ---
-## Header
+class: bottom,left
 
 ???
-* notes
-* notes
+*the OR is larger than RR; this an overestimation of the exposure as a risk. if the rr is smaller than 1 the or will underestimate the exposure as a preventive factor. Only when the prevalence or incidence is small the RR and OR will tend to be equal. you will see that OR is so common reported in epi studiesand  it is because it is the estimate from logistic regression analysis. 
+*Nevertheless for cohort studies RR should be given preference over OR
+
 --
 
-* Bullet point 1
+
+## Intrepeting OR and RR
+
 --
 
-* Bullet point 2
+
+
+```r
+(OR2 = (90 * 120) / (30 * 60))
+```
+
+```
+*## [1] 6
+*```
+
+--
+
+
+
+
+```r
+(RR = ((90) / (90 + 60)) / ((30) / (30 + 120)))
+```
+
+```
+*## [1] 3
+*```
+
+--
+
+
+
+&amp;#9758; OR = 6; the odds of disease in exposed individuals is six times higher than in the unexposed
+
+
+--
+
+&amp;#9755; RR = 3; The incidence of disease in exposed is three times higher than in the unexposed
+
+
+---
+class: center, top
+
+# Speeding RR and OR estimation with R &amp;clubs;
+
+--
+
+
+
+
+
+```r
+m &lt;- matrix(c(90, 60, 30, 120), nrow = 2, byrow = TRUE)
+m &lt;- as.table(m)
+m
+```
+
+```
+##     A   B
+## A  90  60
+## B  30 120
+```
+
+
+
+
+
+--
+
+
+
+```r
+install.packages("epiR")
+library(epiR)
+```
+
+
+
+--
+
+
+
+```r
+epi.2by2(m, method = "cohort.count")
+```
+
+
+---
+class: top, left
+
+
+
+
+```r
+epi.2by2(m, method = "cohort.count")
+```
+
+```
+*##              Outcome +    Outcome -      Total        Inc risk *        Odds
+## Exposed +           90           60        150                60       1.500
+## Exposed -           30          120        150                20       0.250
+## Total              120          180        300                40       0.667
+## 
+## Point estimates and 95% CIs:
+## -------------------------------------------------------------------
+*## Inc risk ratio                               3.00 (2.12, 4.24)
+*## Odds ratio                                   6.00 (3.58, 10.06)
+## Attrib risk *                                40.00 (29.88, 50.12)
+## Attrib risk in population *                  20.00 (11.53, 28.47)
+## Attrib fraction in exposed (%)               66.67 (52.90, 76.41)
+## Attrib fraction in population (%)            50.00 (34.80, 61.65)
+## -------------------------------------------------------------------
+##  Test that OR = 1: chi2(1) = 50.000 Pr&gt;chi2 = &lt;0.001
+##  Wald confidence limits
+##  CI: confidence interval
+##  * Outcomes per 100 population units
+```
+
+---
+class: inverse, center, middle
+
+# We learned
+
+
+--
+
+ cohort studies
+
+--
+
+ recall a two-by-table
+ 
+--
+ 
+ risk ratio
+
+--
+
+ interpret risk ratio and odds ratio
+
+--
+
+ saw how to get this RR and OR with `R`
+ 
+---
+class:
+
+background-image: url("img/horse.JPG")
+background-size: contain
+
+
+.right[
+&gt; 
+
+&gt; 
+         
+&gt; "tell me, I forget
+
+&gt; show me, I remember
+
+&gt; involve me, I understand"
+
+&gt;&lt;footer&gt;--- Chinesse proverb&lt;/footer&gt;]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
-<script>var slideshow = remark.create();
+<script>var slideshow = remark.create({
+"lib_dir": "libs",
+"css": ["default", "default-fonts", "hygge"],
+"ratio": "18:9",
+"highlightLines": true,
+"slideNumberFormat": "%current%",
+"highlightStyle": "ir-black",
+"countIncrementalSlides": false
+});
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
 });
@@ -780,7 +918,24 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
       links[i].target = '_blank';
     }
   }
-})();</script>
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
 slideshow._releaseMath = function(el) {
